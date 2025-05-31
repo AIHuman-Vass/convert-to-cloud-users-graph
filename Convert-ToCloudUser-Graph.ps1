@@ -6,7 +6,10 @@ Import-Module Microsoft.Graph -ErrorAction Stop
 Import-Module ADSyncTools -ErrorAction Stop
 
 # Connect to Microsoft Graph
-Connect-MgGraph -Scopes "User.ReadWrite.All"
+Connect-MgGraph -Scopes "User.ReadWrite.All", "Directory.AccessAsUser.All"
+
+# Check Scope
+(Get-MgContext).Scopes
 
 # Load users from CSV (make sure users.csv is in the same folder and contains UserPrincipalName column)
 $users = Import-Csv -Path "./users.csv"
